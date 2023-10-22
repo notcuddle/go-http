@@ -19,6 +19,7 @@ func main() {
 	mux.HandleFunc("/about", routes.About)
 	mux.HandleFunc("/parametros/{id:.*}/{slug:.*}", routes.Parametro)
 	mux.HandleFunc("/parametro-querystring", routes.ParametroQueryString)
+	mux.HandleFunc("/estructuras", routes.Estructuras)
 
 	server := &http.Server{
 		Addr:         "localhost:8081",

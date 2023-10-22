@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Estructuras</h1>
+    <h3>Declaracion variables</h3>
+    {{ with $valor := "Mi valor con ñandu" }}
+        <p>{{$valor}}</p>
+    {{end}}
+
+    <hr>
+
+    <h3>Valores desde es</h3>
+    <ul>
+        <li>Nombre: {{.Nombre}}</li>
+        <li>Edad: {{.Edad}}</li>
+        <li>Perfil: {{.Perfil}}</li>
+    </ul>
+
+    <h3>Condicionales</h3>
+
+    {{if ge .Edad 18}}
+        <p>Eres mayor de edad</p>
+    {{end}}
+
+</body>
+</html>
