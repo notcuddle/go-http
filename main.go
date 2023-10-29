@@ -21,6 +21,11 @@ func main() {
 	mux.HandleFunc("/parametro-querystring", routes.ParametroQueryString)
 	mux.HandleFunc("/estructuras", routes.Estructuras)
 
+	//archivos estaticos hacia mux
+
+	s := http.StripPrefix("/public/", http.FileServer(http.Dir("./public/")))
+	mux.PathPrefix("/public/").Handler(s)
+
 	server := &http.Server{
 		Addr:         "localhost:8081",
 		Handler:      mux,

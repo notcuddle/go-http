@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -12,6 +13,8 @@ func Home(response http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println(request.Header)
 
 	template.Execute(response, nil)
 }
@@ -26,6 +29,7 @@ func About(response http.ResponseWriter, request *http.Request) {
 }
 
 func Parametro(response http.ResponseWriter, request *http.Request) {
+
 	template, err := template.ParseFiles("templates/parametros.html")
 	vars := mux.Vars(request)
 
@@ -59,9 +63,14 @@ func ParametroQueryString(response http.ResponseWriter, request *http.Request) {
 }
 
 type Datos struct {
+	Nombre      string
+	Edad        int
+	Perfil      int
+	Habilidades []Habilidad
+}
+
+type Habilidad struct {
 	Nombre string
-	Edad   int
-	Perfil int
 }
 
 func Estructuras(response http.ResponseWriter, request *http.Request) {
@@ -70,7 +79,15 @@ func Estructuras(response http.ResponseWriter, request *http.Request) {
 		panic(err)
 	}
 
-	template.Execute(response, Datos{"Elias", 11, 1})
+	habilidad1 := Habilidad{"Inteligencia"}
+	habilidad2 := Habilidad{"Videojuegos"}
+	habilidad3 := Habilidad{"Programacion"}
+	habilidad4 := Habilidad{"Matamaticas"}
+	habilidad5 := Habilidad{"Linux"}
+
+	habilidades := []Habilidad{habilidad1, habilidad2, habilidad3, habilidad4, habilidad5}
+
+	template.Execute(response, Datos{"Elias", 11, 1, habilidades})
 }
 
 /*func Home(response http.ResponseWriter, request *http.Request) {

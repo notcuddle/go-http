@@ -27,5 +27,15 @@
         <p>Eres mayor de edad</p>
     {{end}}
 
+    <hr>
+    <h3>iteraciones</h3>
+    {{.Habilidades}}
+
+    <ul>
+        {{range .Habilidades }}
+            <li>{{.Nombre}}</li>
+        {{end}}
+    </ul>
+
 </body>
 </html>
